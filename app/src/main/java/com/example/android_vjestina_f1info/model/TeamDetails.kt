@@ -2,6 +2,7 @@ package com.example.android_vjestina_f1info.model
 
 data class TeamDetails(
     val team: Team,
+    val drivers: List<Driver>,
     val base: String,
     val first_team_entry: Int,
     val world_championships: Int,
