@@ -1,9 +1,8 @@
 package com.example.android_vjestina_f1info.model
 
-data class Driver(
+data class Team(
     val id: Int,
     val name: String,
-    val abbr: String,
-    val number: Int,
-    val imageUrl: String?
+    val logoUrl: String?,
+    val isFavorite: Boolean
 )
