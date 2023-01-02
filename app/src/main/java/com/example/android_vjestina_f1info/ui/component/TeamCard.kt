@@ -20,6 +20,7 @@ import coil.compose.AsyncImage
 import com.example.android_vjestina_f1info.mock.F1InfoMock
 
 data class TeamCardViewState(
+    val id: Int,
     val name: String,
     val logoUrl: String?,
     val points: Int,
@@ -88,6 +89,7 @@ fun TeamCard(
 private fun TeamCardPreview() {
     val team = F1InfoMock.getTeam()
     val teamCardViewState = TeamCardViewState(
+        id = team.id,
         name = team.name,
         logoUrl = team.logoUrl,
         points = team.points,

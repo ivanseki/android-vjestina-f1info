@@ -23,6 +23,7 @@ import coil.compose.AsyncImage
 import com.example.android_vjestina_f1info.mock.F1InfoMock
 
 data class DriverCardViewState(
+    val id: Int,
     val name: String,
     val number: Int,
     val imageUrl: String?,
@@ -103,6 +104,7 @@ fun DriverCard(
 private fun DriverCardPreview() {
     val driver = F1InfoMock.getDriver()
     val driverCardViewState = DriverCardViewState(
+        id = driver.id,
         name = driver.name,
         number = driver.number,
         imageUrl = driver.imageUrl,
