@@ -11,31 +11,41 @@ object F1InfoMock {
             id = 1,
             name = "Red Bull Racing",
             logoUrl = "https://media-1.api-sports.io/formula-1/teams/1.png",
-            isFavorite = true
+            isFavorite = true,
+            points = 759,
+            position = 1
         ),
         Team(
             id = 2,
             name = "McLaren Racing",
             logoUrl = "https://media-1.api-sports.io/formula-1/teams/2.png",
-            isFavorite = false
+            isFavorite = false,
+            points = 159,
+            position = 5
         ),
         Team(
             id = 3,
             name = "Scuderia Ferrari",
             logoUrl = "https://media-1.api-sports.io/formula-1/teams/3.png",
-            isFavorite = false
+            isFavorite = false,
+            points = 554,
+            position = 2
         ),
         Team(
             id = 4,
             name = "Mercedes-AMG Petronas",
             logoUrl = "https://media.api-sports.io/formula-1/teams/5.png",
-            isFavorite = false
+            isFavorite = false,
+            points = 515,
+            position = 3
         ),
         Team(
             id = 5,
             name = "Haas F1 Team",
             logoUrl = "https://media-2.api-sports.io/formula-1/teams/14.png",
-            isFavorite = true
+            isFavorite = true,
+            points = 37,
+            position = 8
         )
     )
 
@@ -44,15 +54,18 @@ object F1InfoMock {
             id = 1,
             name = "Red Bull Racing",
             logoUrl = "https://media-1.api-sports.io/formula-1/teams/1.png",
-            isFavorite = true
+            isFavorite = true,
+            points = 759,
+            position = 1
         ),
         drivers = List(2) {
             Driver(
                 id = 1,
                 name = "Max Verstappen",
-                abbr = "VER",
                 number = 1,
-                imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png"
+                imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
+                points = 454,
+                position = 1
             )
         },
         base = "Milton Keynes, United Kingdom",
@@ -70,15 +83,18 @@ object F1InfoMock {
     fun getDriver(): Driver = Driver(
         id = 1,
         name = "Max Verstappen",
-        abbr = "VER",
         number = 1,
-        imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png"
+        imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
+        points = 454,
+        position = 1
     )
 
     fun getTeam(): Team = Team(
         id = 1,
         name = "Red Bull Racing",
         logoUrl = "https://media-1.api-sports.io/formula-1/teams/1.png",
-        isFavorite = true
+        isFavorite = true,
+        points = 759,
+        position = 1
     )
 }

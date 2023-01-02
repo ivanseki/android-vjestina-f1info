@@ -1,6 +1,9 @@
 package com.example.android_vjestina_f1info.ui.component
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -19,16 +22,17 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.android_vjestina_f1info.mock.F1InfoMock
 
-data class TeamCardViewState(
+data class DriverCardViewState(
     val name: String,
-    val logoUrl: String?,
+    val number: Int,
+    val imageUrl: String?,
     val points: Int,
     val position: Int
 )
 
 @Composable
-fun TeamCard(
-    teamCardViewState: TeamCardViewState,
+fun DriverCard(
+    driverCardViewState: DriverCardViewState,
     modifier: Modifier
 ) {
     Card(
@@ -40,7 +44,7 @@ fun TeamCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = teamCardViewState.position.toString(),
+                text = driverCardViewState.position.toString(),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
@@ -51,16 +55,27 @@ fun TeamCard(
             )
 
             AsyncImage(
-                model = teamCardViewState.logoUrl,
-                contentDescription = teamCardViewState.name,
+                model = driverCardViewState.imageUrl,
+                contentDescription = driverCardViewState.name,
                 modifier = Modifier
-                    .weight(0.3F)
+                    .weight(0.2F)
                     .padding(5.dp),
                 contentScale = ContentScale.Fit
             )
 
             Text(
-                text = teamCardViewState.name,
+                text = driverCardViewState.number.toString(),
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .weight(0.1F)
+                    .padding(5.dp)
+            )
+
+            Text(
+                text = driverCardViewState.name,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
@@ -70,7 +85,7 @@ fun TeamCard(
             )
 
             Text(
-                text = teamCardViewState.points.toString(),
+                text = driverCardViewState.points.toString(),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
@@ -85,17 +100,18 @@ fun TeamCard(
 
 @Preview(showBackground = false)
 @Composable
-private fun TeamCardPreview() {
-    val team = F1InfoMock.getTeam()
-    val teamCardViewState = TeamCardViewState(
-        name = team.name,
-        logoUrl = team.logoUrl,
-        points = team.points,
-        position = team.position
+private fun DriverCardPreview() {
+    val driver = F1InfoMock.getDriver()
+    val driverCardViewState = DriverCardViewState(
+        name = driver.name,
+        number = driver.number,
+        imageUrl = driver.imageUrl,
+        points = driver.points,
+        position = driver.position
     )
 
-    TeamCard(
-        teamCardViewState = teamCardViewState,
+    DriverCard(
+        driverCardViewState = driverCardViewState,
         modifier = Modifier
             .width(350.dp)
             .height(60.dp)
