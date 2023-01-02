@@ -6,5 +6,6 @@ data class Driver(
     val number: Int,
     val imageUrl: String?,
     val points: Int,
-    val position: Int
+    val position: Int,
+    val countryName: String
 )

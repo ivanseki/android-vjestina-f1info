@@ -65,7 +65,8 @@ object F1InfoMock {
                 number = 1,
                 imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
                 points = 454,
-                position = 1
+                position = 1,
+                countryName = "Netherlands"
             )
         },
         base = "Milton Keynes, United Kingdom",
@@ -86,7 +87,8 @@ object F1InfoMock {
         number = 1,
         imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
         points = 454,
-        position = 1
+        position = 1,
+        countryName = "Netherlands"
     )
 
     fun getTeam(): Team = Team(
