@@ -74,4 +74,11 @@ object F1InfoMock {
         number = 1,
         imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png"
     )
+
+    fun getTeam(): Team = Team(
+        id = 1,
+        name = "Red Bull Racing",
+        logoUrl = "https://media-1.api-sports.io/formula-1/teams/1.png",
+        isFavorite = true
+    )
 }
