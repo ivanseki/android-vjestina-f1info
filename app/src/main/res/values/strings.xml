@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">F1 Info</string>
     <string name="season">2022</string>
+    <string name="position">Position</string>
+    <string name="name">Name</string>
+    <string name="points">Points</string>
+    <string name="number">Number</string>
 </resources>
