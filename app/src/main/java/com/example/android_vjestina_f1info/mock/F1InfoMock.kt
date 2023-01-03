@@ -58,7 +58,7 @@ object F1InfoMock {
             points = 759,
             position = 1
         ),
-        drivers = List(2) {
+        drivers = listOf(
             Driver(
                 id = 1,
                 name = "Max Verstappen",
@@ -67,8 +67,17 @@ object F1InfoMock {
                 points = 454,
                 position = 1,
                 countryName = "Netherlands"
+            ),
+            Driver(
+                id = 2,
+                name = "Max Verstappen",
+                number = 1,
+                imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
+                points = 454,
+                position = 1,
+                countryName = "Netherlands"
             )
-        },
+        ),
         base = "Milton Keynes, United Kingdom",
         first_team_entry = 1997,
         world_championships = 5,
