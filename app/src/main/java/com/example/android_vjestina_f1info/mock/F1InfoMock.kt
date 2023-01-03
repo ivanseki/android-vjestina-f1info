@@ -81,6 +81,63 @@ object F1InfoMock {
         engine = "Red Bull Powertrains"
     )
 
+    fun getDriversList(): List<Driver> = listOf(
+        Driver(
+            id = 1,
+            name = "Max Verstappen",
+            number = 1,
+            imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
+            points = 454,
+            position = 1,
+            countryName = "Netherlands"
+        ),
+        Driver(
+            id = 2,
+            name = "Max Verstappen",
+            number = 1,
+            imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
+            points = 454,
+            position = 1,
+            countryName = "Netherlands"
+        ),
+        Driver(
+            id = 3,
+            name = "Max Verstappen",
+            number = 1,
+            imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
+            points = 454,
+            position = 1,
+            countryName = "Netherlands"
+        ),
+        Driver(
+            id = 4,
+            name = "Max Verstappen",
+            number = 1,
+            imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
+            points = 454,
+            position = 1,
+            countryName = "Netherlands"
+        ),
+        Driver(
+            id = 5,
+            name = "Max Verstappen",
+            number = 1,
+            imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
+            points = 454,
+            position = 1,
+            countryName = "Netherlands"
+        ),
+        Driver(
+            id = 6,
+            name = "Max Verstappen",
+            number = 1,
+            imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
+            points = 454,
+            position = 1,
+            countryName = "Netherlands"
+        )
+    )
+
     fun getDriver(): Driver = Driver(
         id = 1,
         name = "Max Verstappen",
