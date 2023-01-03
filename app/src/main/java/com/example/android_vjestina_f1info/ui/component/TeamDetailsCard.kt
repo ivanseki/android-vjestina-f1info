@@ -70,7 +70,7 @@ fun TeamDetailsCard(
                 contentDescription = teamDetailsCardViewState.name,
                 modifier = Modifier
                     .weight(0.5F)
-                    .padding(5.dp),
+                    .padding(10.dp),
                 contentScale = ContentScale.Fit
             )
         }
@@ -91,7 +91,7 @@ private fun TeamDetailsCardPreview() {
         ),
         modifier = Modifier
             .width(350.dp)
-            .height(125.dp),
+            .height(150.dp),
         onClick = { },
         onFavouriteButtonClick = { }
     )
