@@ -9,37 +9,28 @@ const val TEAM_STANDINGS_ROUTE = "Team standings"
 sealed class NavigationItem(
     override val route: String,
     val selectedIconId: Int,
-    val unselectedIconsId: List<Int>,
+    val unselectedIconId: Int,
     val labelId: Int,
 ) : F1InfoAppDestination(route) {
 
     object HomeDestination : NavigationItem(
         route = HOME_ROUTE,
         selectedIconId = R.drawable.ic_home_selected,
-        unselectedIconsId = listOf(
-            R.drawable.ic_teams_notselected,
-            R.drawable.ic_drivers_notselected
-        ),
+        unselectedIconId = R.drawable.ic_home_notselected,
         labelId = R.string.home,
     )
 
     object DriverStandingsDestination : NavigationItem(
         route = DRIVER_STANDINGS_ROUTE,
         selectedIconId = R.drawable.ic_drivers_selected,
-        unselectedIconsId = listOf(
-            R.drawable.ic_home_notselected,
-            R.drawable.ic_teams_notselected
-        ),
+        unselectedIconId = R.drawable.ic_drivers_notselected,
         labelId = R.string.driver_standings,
     )
 
     object TeamStandingsDestination : NavigationItem(
         route = TEAM_STANDINGS_ROUTE,
         selectedIconId = R.drawable.ic_teams_selected,
-        unselectedIconsId = listOf(
-            R.drawable.ic_drivers_notselected,
-            R.drawable.ic_home_notselected
-        ),
+        unselectedIconId = R.drawable.ic_teams_notselected,
         labelId = R.string.team_standings,
     )
 }

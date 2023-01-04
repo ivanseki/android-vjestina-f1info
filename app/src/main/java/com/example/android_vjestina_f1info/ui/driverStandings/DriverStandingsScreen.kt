@@ -6,6 +6,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -19,6 +22,8 @@ import com.example.android_vjestina_f1info.mock.F1InfoMock
 import com.example.android_vjestina_f1info.ui.component.DriverCard
 import com.example.android_vjestina_f1info.ui.driverStandings.mapper.DriverStandingsMapper
 import com.example.android_vjestina_f1info.ui.driverStandings.mapper.IDriverStandingsMapper
+import com.example.android_vjestina_f1info.ui.teamStandings.TeamStandingsScreen
+import com.example.android_vjestina_f1info.ui.teamStandings.teamStandingsViewState
 import com.example.android_vjestina_f1info.ui.theme.spacing
 
 private val driverStandingsMapper: IDriverStandingsMapper = DriverStandingsMapper()
@@ -27,7 +32,12 @@ val driverStandingsViewState =
     driverStandingsMapper.toDriverStandingsState(F1InfoMock.getDriversList())
 
 @Composable
-fun TeamStandingsRoute() {
+fun DriverStandingsRoute() {
+    val driverStandingsViewState by remember { mutableStateOf(driverStandingsViewState) }
+
+    DriverStandingsScreen(
+        drivers = driverStandingsViewState
+    )
 }
 
 @Composable
@@ -72,7 +82,7 @@ fun DriverStandingsScreen(
                 color = Color.Black,
                 textAlign = TextAlign.Start,
                 modifier = Modifier
-                    .weight(0.4F)
+                    .weight(0.38F)
                     .padding(5.dp)
             )
 
@@ -83,7 +93,7 @@ fun DriverStandingsScreen(
                 color = Color.Black,
                 textAlign = TextAlign.Start,
                 modifier = Modifier
-                    .weight(0.15F)
+                    .weight(0.17F)
                     .padding(5.dp)
             )
         }
