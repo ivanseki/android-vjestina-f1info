@@ -8,4 +8,5 @@
     <string name="home">Home</string>
     <string name="driver_standings">Driver Standings</string>
     <string name="team_standings">Team Standings</string>
+    <string name="teams">Teams</string>
 </resources>

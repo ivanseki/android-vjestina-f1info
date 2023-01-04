@@ -48,6 +48,16 @@ fun DriverStandingsScreen(
     Column(
         modifier = modifier
     ) {
+        Text(
+            text = stringResource(R.string.driver_standings),
+            maxLines = 1,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(5.dp),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()

@@ -1,19 +1,21 @@
 package com.example.android_vjestina_f1info.ui.home
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.android_vjestina_f1info.R
 import com.example.android_vjestina_f1info.mock.F1InfoMock
 import com.example.android_vjestina_f1info.ui.component.TeamDetailsCard
 import com.example.android_vjestina_f1info.ui.home.mapper.HomeScreenMapper
@@ -50,6 +52,18 @@ fun HomeScreen(
         contentPadding = PaddingValues(horizontal = MaterialTheme.spacing.small),
         userScrollEnabled = true
     ) {
+        item {
+            Text(
+                text = stringResource(R.string.teams),
+                maxLines = 1,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 5.dp),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
+
         items(
             items = teams.teams,
             key = { team -> team.id }

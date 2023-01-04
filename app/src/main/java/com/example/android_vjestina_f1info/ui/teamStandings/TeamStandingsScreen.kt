@@ -45,6 +45,16 @@ fun TeamStandingsScreen(
     Column(
         modifier = modifier
     ) {
+        Text(
+            text = stringResource(R.string.team_standings),
+            maxLines = 1,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(7.dp),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()

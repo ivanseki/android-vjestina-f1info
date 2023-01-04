@@ -33,6 +33,7 @@ import com.example.android_vjestina_f1info.ui.driverStandings.DriverStandingsRou
 import com.example.android_vjestina_f1info.ui.home.HomeRoute
 import com.example.android_vjestina_f1info.ui.teamDetailsScreen.TeamDetailsRoute
 import com.example.android_vjestina_f1info.ui.teamStandings.TeamStandingsRoute
+import com.example.android_vjestina_f1info.ui.theme.spacing
 
 @Composable
 fun MainScreen() {
@@ -180,7 +181,8 @@ private fun BottomNavigationBar(
                                 destination.selectedIconId
                             else destination.unselectedIconId
                         ),
-                        contentDescription = null
+                        contentDescription = null,
+                        tint = Color.Unspecified
                     )
                 },
                 label = {
