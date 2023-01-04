@@ -193,6 +193,33 @@ fun TeamDetailsOverview(
         )
 
         Text(
+            text = "President: $president",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.Black,
+            modifier = Modifier
+                .padding(top = 5.dp, bottom = 5.dp)
+        )
+
+        Text(
+            text = "Director: $director",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.Black,
+            modifier = Modifier
+                .padding(top = 5.dp, bottom = 5.dp)
+        )
+
+        Text(
+            text = "Technical manager: $technical_manager",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.Black,
+            modifier = Modifier
+                .padding(top = 5.dp, bottom = 5.dp)
+        )
+
+        Text(
             text = "Chassis: $chassis",
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
@@ -209,35 +236,6 @@ fun TeamDetailsOverview(
             modifier = Modifier
                 .padding(top = 5.dp, bottom = 5.dp)
         )
-/*
-        Text(
-            text = president,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(5.dp)
-        )
-
-        Text(
-            text = director,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(5.dp)
-        )
-
-        Text(
-            text = technical_manager,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(5.dp)
-        )
-*/
-
     }
 }
 
