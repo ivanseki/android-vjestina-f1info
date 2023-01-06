@@ -34,6 +34,9 @@ import com.example.android_vjestina_f1info.ui.home.HomeRoute
 import com.example.android_vjestina_f1info.ui.teamDetailsScreen.TeamDetailsRoute
 import com.example.android_vjestina_f1info.ui.teamStandings.TeamStandingsRoute
 import com.example.android_vjestina_f1info.ui.theme.spacing
+import org.koin.androidx.compose.get
+import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun MainScreen() {
@@ -91,6 +94,7 @@ fun MainScreen() {
             ) {
                 composable(NavigationItem.HomeDestination.route) {
                     HomeRoute(
+                        viewModel = getViewModel(),
                         onNavigateToTeamDetails = {
                             navController.navigate(
                                 TeamDetailsDestination.createNavigationRoute(it)
@@ -100,18 +104,29 @@ fun MainScreen() {
                 }
 
                 composable(NavigationItem.TeamStandingsDestination.route) {
-                    TeamStandingsRoute()
+                    TeamStandingsRoute(
+                        viewModel = getViewModel()
+                    )
                 }
 
                 composable(NavigationItem.DriverStandingsDestination.route) {
-                    DriverStandingsRoute()
+                    DriverStandingsRoute(
+                        viewModel = getViewModel()
+                    )
                 }
 
                 composable(
                     route = TeamDetailsDestination.route,
                     arguments = listOf(navArgument(TEAM_ID_KEY) { type = NavType.IntType }),
                 ) {
-                    TeamDetailsRoute()
+                    TeamDetailsRoute(
+                        viewModel = getViewModel(
+                            parameters = {
+                                parametersOf(
+                                    it.arguments?.getInt(TEAM_ID_KEY)
+                                )
+                            })
+                    )
                 }
             }
         }

@@ -6,6 +6,8 @@ import com.example.android_vjestina_f1info.ui.driverStandings.di.driverStandings
 import com.example.android_vjestina_f1info.ui.home.di.homeModule
 import com.example.android_vjestina_f1info.ui.teamDetailsScreen.di.teamDetailsModule
 import com.example.android_vjestina_f1info.ui.teamStandings.di.teamStandingsModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
 
 class F1InfoApp : Application() {
@@ -13,6 +15,8 @@ class F1InfoApp : Application() {
         super.onCreate()
 
         startKoin {
+            androidLogger()
+            androidContext(androidContext = this@F1InfoApp)
             modules(
                 dataModule,
                 teamStandingsModule,

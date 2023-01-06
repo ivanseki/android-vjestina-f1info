@@ -6,10 +6,9 @@ import com.example.android_vjestina_f1info.model.Driver
 import com.example.android_vjestina_f1info.model.Team
 import com.example.android_vjestina_f1info.model.TeamDetails
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.runBlocking
+import okhttp3.internal.toImmutableList
 
 class FakeF1InfoRepository(
     private val ioDispatcher: CoroutineDispatcher,
@@ -21,19 +20,16 @@ class FakeF1InfoRepository(
             fakeTeams.map { it.copy(isFavorite = favoriteIds.contains(it.id)) }
         }
         .flowOn(ioDispatcher)
-
-    private val fakeDrivers = F1InfoMock.getDriversList().toMutableList()
-
-    private val drivers: Flow<List<Driver>> = FavoritesDBMock.favoriteIds
-        .mapLatest { favoriteIds ->
-            fakeDrivers.map { it.copy(id = favoriteIds.first()) }
-        }.flowOn(ioDispatcher)
-
+    
     override fun teams() = teams
 
     override fun teamStandings() = teams
 
-    override fun driverStandings() = drivers
+    private fun <T> Flow<T>.toSingleListItem(): Flow<List<T>> =
+        runBlocking { flowOf(toList().toImmutableList()) }
+
+    override fun driverStandings(): Flow<List<Driver>> =
+        F1InfoMock.getDriversList().asFlow().toSingleListItem()
 
     override fun teamDetails(teamId: Int): Flow<TeamDetails> =
         FavoritesDBMock.favoriteIds.mapLatest { favoriteIds ->
