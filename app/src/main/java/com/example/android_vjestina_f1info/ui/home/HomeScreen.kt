@@ -6,9 +6,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -22,15 +21,12 @@ import com.example.android_vjestina_f1info.ui.home.mapper.HomeScreenMapper
 import com.example.android_vjestina_f1info.ui.home.mapper.IHomeScreenMapper
 import com.example.android_vjestina_f1info.ui.theme.spacing
 
-private val homeScreenMapper: IHomeScreenMapper = HomeScreenMapper()
-
-val homeViewState = homeScreenMapper.toHomeViewState(F1InfoMock.getTeamsList())
-
 @Composable
 fun HomeRoute(
+    viewModel: HomeViewModel,
     onNavigateToTeamDetails: (Int) -> Unit
 ) {
-    val homeViewState by remember { mutableStateOf(homeViewState) }
+    val homeViewState: HomeViewState by viewModel.teamsViewState.collectAsState()
 
     HomeScreen(
         teams = homeViewState,

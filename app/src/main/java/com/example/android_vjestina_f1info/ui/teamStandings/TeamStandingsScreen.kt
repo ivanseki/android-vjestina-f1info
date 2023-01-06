@@ -6,9 +6,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -24,13 +23,11 @@ import com.example.android_vjestina_f1info.ui.teamStandings.mapper.ITeamStanding
 import com.example.android_vjestina_f1info.ui.teamStandings.mapper.TeamStandingsMapper
 import com.example.android_vjestina_f1info.ui.theme.spacing
 
-private val teamStandingsMapper: ITeamStandingsMapper = TeamStandingsMapper()
-
-val teamStandingsViewState = teamStandingsMapper.toTeamStandingsState(getTeamsList())
-
 @Composable
-fun TeamStandingsRoute() {
-    val teamStandingsViewState by remember { mutableStateOf(teamStandingsViewState) }
+fun TeamStandingsRoute(
+    viewModel: TeamStandingsViewModel
+) {
+    val teamStandingsViewState: TeamStandingsViewState by viewModel.teamStandingsViewState.collectAsState()
 
     TeamStandingsScreen(
         teams = teamStandingsViewState
