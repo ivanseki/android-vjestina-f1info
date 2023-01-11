@@ -82,7 +82,7 @@ private fun HomeScreenPreview() {
     val homeScreenMapper: IHomeScreenMapper = HomeScreenMapper()
 
     HomeScreen(
-        teams = homeScreenMapper.toHomeViewState(F1InfoMock.getTeamsList()),
+        teams = homeScreenMapper.toHomeViewState(F1InfoMock.getTeamStandingsList()),
         onTeamCardClick = { },
         onFavoriteClick = { }
     )

@@ -1,49 +1,42 @@
 package com.example.android_vjestina_f1info.mock
 
-import com.example.android_vjestina_f1info.model.Driver
-import com.example.android_vjestina_f1info.model.Team
-import com.example.android_vjestina_f1info.model.TeamDetails
+import com.example.android_vjestina_f1info.model.*
 
 object F1InfoMock {
 
-    fun getTeamsList(): List<Team> = listOf(
-        Team(
+    fun getTeamStandingsList(): List<TeamStanding> = listOf(
+        TeamStanding(
             id = 1,
             name = "Red Bull Racing",
             logoUrl = "https://media-1.api-sports.io/formula-1/teams/1.png",
-            isFavorite = true,
             points = 759,
             position = 1
         ),
-        Team(
+        TeamStanding(
             id = 2,
             name = "McLaren Racing",
             logoUrl = "https://media-1.api-sports.io/formula-1/teams/2.png",
-            isFavorite = false,
             points = 159,
             position = 5
         ),
-        Team(
+        TeamStanding(
             id = 3,
             name = "Scuderia Ferrari",
             logoUrl = "https://media-1.api-sports.io/formula-1/teams/3.png",
-            isFavorite = false,
             points = 554,
             position = 2
         ),
-        Team(
+        TeamStanding(
             id = 4,
             name = "Mercedes-AMG Petronas",
             logoUrl = "https://media.api-sports.io/formula-1/teams/5.png",
-            isFavorite = false,
             points = 515,
             position = 3
         ),
-        Team(
+        TeamStanding(
             id = 5,
             name = "Haas F1 Team",
             logoUrl = "https://media-2.api-sports.io/formula-1/teams/14.png",
-            isFavorite = true,
             points = 37,
             position = 8
         )
@@ -55,26 +48,18 @@ object F1InfoMock {
             name = "Red Bull Racing",
             logoUrl = "https://media-1.api-sports.io/formula-1/teams/1.png",
             isFavorite = true,
-            points = 759,
-            position = 1
         ),
         drivers = listOf(
             Driver(
                 id = 1,
                 name = "Max Verstappen",
-                number = 1,
                 imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
-                points = 454,
-                position = 1,
                 countryName = "Netherlands"
             ),
             Driver(
                 id = 2,
                 name = "Max Verstappen",
-                number = 1,
                 imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
-                points = 454,
-                position = 1,
                 countryName = "Netherlands"
             )
         ),
@@ -91,24 +76,18 @@ object F1InfoMock {
     )
 
     fun getTeamDetails(teamId: Int): TeamDetails = TeamDetails(
-        team = getTeamsList().first { it.id == teamId },
+        team = getTeams().first { it.id == teamId },
         drivers = listOf(
             Driver(
                 id = 1,
                 name = "Max Verstappen",
-                number = 1,
                 imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
-                points = 454,
-                position = 1,
                 countryName = "Netherlands"
             ),
             Driver(
                 id = 2,
                 name = "Max Verstappen",
-                number = 1,
                 imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
-                points = 454,
-                position = 1,
                 countryName = "Netherlands"
             )
         ),
@@ -124,70 +103,61 @@ object F1InfoMock {
         engine = "Red Bull Powertrains"
     )
 
-    fun getDriversList(): List<Driver> = listOf(
-        Driver(
+    fun getDriverStandingList(): List<DriverStanding> = listOf(
+        DriverStanding(
             id = 1,
             name = "Max Verstappen",
             number = 1,
             imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
             points = 454,
-            position = 1,
-            countryName = "Netherlands"
+            position = 1
         ),
-        Driver(
+        DriverStanding(
             id = 2,
             name = "Max Verstappen",
             number = 1,
             imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
             points = 454,
-            position = 1,
-            countryName = "Netherlands"
+            position = 1
         ),
-        Driver(
+        DriverStanding(
             id = 3,
             name = "Max Verstappen",
             number = 1,
             imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
             points = 454,
-            position = 1,
-            countryName = "Netherlands"
+            position = 1
         ),
-        Driver(
+        DriverStanding(
             id = 4,
             name = "Max Verstappen",
             number = 1,
             imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
             points = 454,
-            position = 1,
-            countryName = "Netherlands"
+            position = 1
         ),
-        Driver(
+        DriverStanding(
             id = 5,
             name = "Max Verstappen",
             number = 1,
             imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
             points = 454,
-            position = 1,
-            countryName = "Netherlands"
+            position = 1
         ),
-        Driver(
+        DriverStanding(
             id = 6,
             name = "Max Verstappen",
             number = 1,
             imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
             points = 454,
-            position = 1,
-            countryName = "Netherlands"
+            position = 1
         )
     )
 
     fun getDriver(): Driver = Driver(
         id = 1,
         name = "Max Verstappen",
-        number = 1,
         imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
-        points = 454,
-        position = 1,
         countryName = "Netherlands"
     )
 
@@ -195,8 +165,27 @@ object F1InfoMock {
         id = 1,
         name = "Red Bull Racing",
         logoUrl = "https://media-1.api-sports.io/formula-1/teams/1.png",
-        isFavorite = true,
-        points = 759,
-        position = 1
+        isFavorite = true
+    )
+
+    fun getTeams(): List<Team> = listOf(
+        Team(
+            id = 1,
+            name = "Red Bull Racing",
+            logoUrl = "https://media-1.api-sports.io/formula-1/teams/1.png",
+            isFavorite = true
+        ),
+        Team(
+            id = 2,
+            name = "Red Bull Racing",
+            logoUrl = "https://media-1.api-sports.io/formula-1/teams/1.png",
+            isFavorite = true
+        ),
+        Team(
+            id = 3,
+            name = "Red Bull Racing",
+            logoUrl = "https://media-1.api-sports.io/formula-1/teams/1.png",
+            isFavorite = true
+        )
     )
 }

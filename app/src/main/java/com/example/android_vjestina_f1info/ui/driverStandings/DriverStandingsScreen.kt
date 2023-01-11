@@ -128,6 +128,6 @@ private fun DriverStandingsScreenPreview() {
     val driverStandingsMapper: IDriverStandingsMapper = DriverStandingsMapper()
 
     DriverStandingsScreen(
-        drivers = driverStandingsMapper.toDriverStandingsState(F1InfoMock.getDriversList())
+        drivers = driverStandingsMapper.toDriverStandingsState(F1InfoMock.getDriverStandingList())
     )
 }

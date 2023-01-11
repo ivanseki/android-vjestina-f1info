@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.android_vjestina_f1info.R
-import com.example.android_vjestina_f1info.mock.F1InfoMock.getTeamsList
+import com.example.android_vjestina_f1info.mock.F1InfoMock.getTeamStandingsList
 import com.example.android_vjestina_f1info.ui.component.TeamCard
 import com.example.android_vjestina_f1info.ui.teamStandings.mapper.ITeamStandingsMapper
 import com.example.android_vjestina_f1info.ui.teamStandings.mapper.TeamStandingsMapper
@@ -117,6 +117,6 @@ private fun TeamStandingsScreenPreview() {
     val teamStandingsMapper: ITeamStandingsMapper = TeamStandingsMapper()
 
     TeamStandingsScreen(
-        teams = teamStandingsMapper.toTeamStandingsState(getTeamsList())
+        teams = teamStandingsMapper.toTeamStandingsState(getTeamStandingsList())
     )
 }

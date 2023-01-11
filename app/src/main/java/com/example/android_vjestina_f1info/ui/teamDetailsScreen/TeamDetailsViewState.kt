@@ -1,6 +1,7 @@
 package com.example.android_vjestina_f1info.ui.teamDetailsScreen
 
 import com.example.android_vjestina_f1info.model.Team
+import com.example.android_vjestina_f1info.model.TeamStanding
 import com.example.android_vjestina_f1info.ui.component.TeamDetailsDriverCardViewState
 
 data class TeamDetailsViewState(

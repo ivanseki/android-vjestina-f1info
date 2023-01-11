@@ -3,7 +3,7 @@ package com.example.android_vjestina_f1info.ui.teamDetailsScreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android_vjestina_f1info.data.repository.F1InfoRepository
-import com.example.android_vjestina_f1info.model.Team
+import com.example.android_vjestina_f1info.model.TeamStanding
 import com.example.android_vjestina_f1info.ui.teamDetailsScreen.mapper.ITeamDetailsMapper
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -23,7 +23,7 @@ class TeamDetailsViewModel(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000),
                 initialValue = TeamDetailsViewState(
-                    team = Team(
+                    team = TeamStanding(
                         id = 1,
                         name = "",
                         logoUrl = "",
