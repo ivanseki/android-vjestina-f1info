@@ -2,8 +2,8 @@ package com.example.android_vjestina_f1info.ui.teamDetailsScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.android_vjestina_f1info.data.repository.F1InfoRepository
-import com.example.android_vjestina_f1info.model.TeamStanding
+import com.example.android_vjestina_f1info.data.repository.IF1InfoRepository
+import com.example.android_vjestina_f1info.model.Team
 import com.example.android_vjestina_f1info.ui.teamDetailsScreen.mapper.ITeamDetailsMapper
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class TeamDetailsViewModel(
-    private val teamRepository: F1InfoRepository,
+    private val teamRepository: IF1InfoRepository,
     teamDetailsMapper: ITeamDetailsMapper,
     teamId: Int
 ) : ViewModel() {
@@ -23,13 +23,11 @@ class TeamDetailsViewModel(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000),
                 initialValue = TeamDetailsViewState(
-                    team = TeamStanding(
+                    team = Team(
                         id = 1,
                         name = "",
                         logoUrl = "",
                         isFavorite = false,
-                        points = 0,
-                        position = 0
                     ),
                     drivers = emptyList(),
                     base = "",

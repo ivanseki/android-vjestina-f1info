@@ -87,7 +87,7 @@ fun TeamCard(
 @Preview(showBackground = false)
 @Composable
 private fun TeamCardPreview() {
-    val team = F1InfoMock.getTeam()
+    val team = F1InfoMock.getTeamStandingsList().first()
     val teamCardViewState = TeamCardViewState(
         id = team.id,
         name = team.name,

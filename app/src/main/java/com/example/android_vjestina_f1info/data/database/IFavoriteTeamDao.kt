@@ -7,9 +7,9 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface FavoriteTeamDao {
+interface IFavoriteTeamDao {
     @Query("SELECT * FROM favoriteTeams")
-    fun getfavorites(): Flow<List<DbFavoriteTeam>>
+    fun getFavorites(): Flow<List<DbFavoriteTeam>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFavorite(favoriteTeam: DbFavoriteTeam)

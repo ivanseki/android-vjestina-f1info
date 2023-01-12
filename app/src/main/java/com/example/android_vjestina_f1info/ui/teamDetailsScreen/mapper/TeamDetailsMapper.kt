@@ -28,7 +28,7 @@ class TeamDetailsMapper : ITeamDetailsMapper {
                 id = driver.id,
                 name = driver.name,
                 imageUrl = driver.imageUrl,
-                countryName = driver.countryName
+                abbr = driver.abbr
             )
         }
 }

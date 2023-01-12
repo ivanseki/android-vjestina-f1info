@@ -31,7 +31,7 @@ fun HomeRoute(
     HomeScreen(
         teams = homeViewState,
         onTeamCardClick = onNavigateToTeamDetails,
-        onFavoriteClick = { }
+        onFavoriteClick = { teamId -> viewModel.toggleFavorite(teamId) }
     )
 }
 
@@ -40,7 +40,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     teams: HomeViewState,
     onTeamCardClick: (Int) -> Unit,
-    onFavoriteClick: () -> Unit
+    onFavoriteClick: (Int) -> Unit
 ) {
     LazyColumn(
         modifier = modifier,
@@ -70,7 +70,7 @@ fun HomeScreen(
                     .fillMaxWidth()
                     .height(150.dp),
                 onClick = { onTeamCardClick(team.id) },
-                onFavouriteButtonClick = { onFavoriteClick() }
+                onFavouriteButtonClick = onFavoriteClick
             )
         }
     }
@@ -82,7 +82,7 @@ private fun HomeScreenPreview() {
     val homeScreenMapper: IHomeScreenMapper = HomeScreenMapper()
 
     HomeScreen(
-        teams = homeScreenMapper.toHomeViewState(F1InfoMock.getTeamStandingsList()),
+        teams = homeScreenMapper.toHomeViewState(F1InfoMock.getTeams()),
         onTeamCardClick = { },
         onFavoriteClick = { }
     )

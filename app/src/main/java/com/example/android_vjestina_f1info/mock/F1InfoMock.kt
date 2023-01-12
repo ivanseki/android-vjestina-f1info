@@ -54,13 +54,13 @@ object F1InfoMock {
                 id = 1,
                 name = "Max Verstappen",
                 imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
-                countryName = "Netherlands"
+                abbr = "VER"
             ),
             Driver(
                 id = 2,
                 name = "Max Verstappen",
                 imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
-                countryName = "Netherlands"
+                abbr = "VER"
             )
         ),
         base = "Milton Keynes, United Kingdom",
@@ -82,13 +82,13 @@ object F1InfoMock {
                 id = 1,
                 name = "Max Verstappen",
                 imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
-                countryName = "Netherlands"
+                abbr = "VER"
             ),
             Driver(
                 id = 2,
                 name = "Max Verstappen",
                 imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
-                countryName = "Netherlands"
+                abbr = "VER"
             )
         ),
         base = "Milton Keynes, United Kingdom",
@@ -158,7 +158,7 @@ object F1InfoMock {
         id = 1,
         name = "Max Verstappen",
         imageUrl = "https://media-1.api-sports.io/formula-1/drivers/25.png",
-        countryName = "Netherlands"
+        abbr = "VER"
     )
 
     fun getTeam(): Team = Team(

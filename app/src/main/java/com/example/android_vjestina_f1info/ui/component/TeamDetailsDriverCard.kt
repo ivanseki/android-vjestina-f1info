@@ -24,7 +24,7 @@ data class TeamDetailsDriverCardViewState(
     val id: Int,
     val name: String,
     val imageUrl: String?,
-    val countryName: String
+    val abbr: String
 )
 
 @Composable
@@ -56,7 +56,7 @@ fun TeamDetailsDriverCard(
             )
 
             Text(
-                text = teamDetailsDriverCardViewState.countryName,
+                text = teamDetailsDriverCardViewState.abbr,
                 fontSize = 12.sp,
                 color = Color.Gray,
                 modifier = Modifier
@@ -76,7 +76,7 @@ private fun TeamDetailsDriverCardPreview() {
             id = driver.id,
             name = driver.name,
             imageUrl = driver.imageUrl,
-            countryName = driver.countryName
+            abbr = driver.abbr
         ),
         modifier = Modifier
             .height(200.dp)

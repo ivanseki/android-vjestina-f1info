@@ -102,7 +102,7 @@ fun DriverCard(
 @Preview(showBackground = false)
 @Composable
 private fun DriverCardPreview() {
-    val driver = F1InfoMock.getDriver()
+    val driver = F1InfoMock.getDriverStandingList().first()
     val driverCardViewState = DriverCardViewState(
         id = driver.id,
         name = driver.name,

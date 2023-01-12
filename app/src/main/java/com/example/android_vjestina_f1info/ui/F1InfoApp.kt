@@ -2,6 +2,8 @@ package com.example.android_vjestina_f1info.ui
 
 import android.app.Application
 import com.example.android_vjestina_f1info.data.di.dataModule
+import com.example.android_vjestina_f1info.data.di.databaseModule
+import com.example.android_vjestina_f1info.data.di.networkModule
 import com.example.android_vjestina_f1info.ui.driverStandings.di.driverStandingsModule
 import com.example.android_vjestina_f1info.ui.home.di.homeModule
 import com.example.android_vjestina_f1info.ui.teamDetailsScreen.di.teamDetailsModule
@@ -22,7 +24,9 @@ class F1InfoApp : Application() {
                 teamStandingsModule,
                 driverStandingsModule,
                 teamDetailsModule,
-                homeModule
+                homeModule,
+                networkModule,
+                databaseModule
             )
         }
     }
