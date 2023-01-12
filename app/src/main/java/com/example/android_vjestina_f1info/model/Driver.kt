@@ -4,5 +4,5 @@ data class Driver(
     val id: Int,
     val name: String,
     val imageUrl: String?,
-    val countryName: String
+    val abbr: String
 )

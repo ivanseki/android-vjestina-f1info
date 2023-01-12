@@ -1,36 +1,34 @@
 package com.example.android_vjestina_f1info.data.network
 
-import com.example.android_vjestina_f1info.data.network.model.ApiTeamDetails
-import com.example.android_vjestina_f1info.data.network.model.DriverStandingsResponse
-import com.example.android_vjestina_f1info.data.network.model.TeamStandingsResponse
-import com.example.android_vjestina_f1info.data.network.model.TeamsResponse
+import com.example.android_vjestina_f1info.R
+import com.example.android_vjestina_f1info.data.network.model.*
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.request.*
-import okhttp3.OkHttpClient
-import okhttp3.Request
 
-class F1InfoService(private val client: OkHttpClient) : IF1InfoService {
+const val BASE_DRIVER_IMAGE_URL = "https://media-1.api-sports.io/formula-1/drivers/"
+const val BASE_TEAM_LOGO_URL = "https://media-2.api-sports.io/formula-1/teams/"
+private const val BASE_URL = "https://api-formula-1.p.rapidapi.com/"
 
-    val request = Request.Builder()
-        .get()
-        .addHeader("X-RapidAPI-Key", "7cc27589a7mshcb29eacccff6aeap186cd5jsn016ceaf74ef5")
-        .addHeader("X-RapidAPI-Host", "api-formula-1.p.rapidapi.com")
+class F1InfoService(private val client: HttpClient) : IF1InfoService {
 
-    override suspend fun fetchTeams(): TeamsResponse{
-        request.url("https://api-formula-1.p.rapidapi.com/teams").build()
-
-        return client.newCall(request).execute()
+    override suspend fun fetchTeams(): TeamsResponse {
+        return client.get("$BASE_URL/teams").body()
     }
 
-    override suspend fun fetchTeamStandings(): TeamStandingsResponse{
-
+    override suspend fun fetchTeamStandings(): TeamStandingsResponse {
+        return client.get("$BASE_URL/teams?season=${R.string.season}").body()
     }
 
-    override suspend fun fetchDriverStandings(): DriverStandingsResponse{
-
+    override suspend fun fetchDriverStandings(): DriverStandingsResponse {
+        return client.get("$BASE_URL/drivers?season=${R.string.season}").body()
     }
 
-    override suspend fun fetchTeamDetails(): ApiTeamDetails{
+    override suspend fun fetchTeamDetails(teamId: Int): ApiTeamDetails {
+        return client.get("$BASE_URL/teams?id=$teamId").body()
+    }
 
+    override suspend fun fetchTeamDetailsDrivers(teamId: Int): TeamDetailsDriversResponse {
+        return client.get("$BASE_URL/drivers?season=${R.string.season}&team=$teamId").body()
     }
 }

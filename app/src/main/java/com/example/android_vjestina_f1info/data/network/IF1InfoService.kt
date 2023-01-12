@@ -1,9 +1,6 @@
 package com.example.android_vjestina_f1info.data.network
 
-import com.example.android_vjestina_f1info.data.network.model.ApiTeamDetails
-import com.example.android_vjestina_f1info.data.network.model.DriverStandingsResponse
-import com.example.android_vjestina_f1info.data.network.model.TeamStandingsResponse
-import com.example.android_vjestina_f1info.data.network.model.TeamsResponse
+import com.example.android_vjestina_f1info.data.network.model.*
 
 interface IF1InfoService {
     suspend fun fetchTeams(): TeamsResponse
@@ -12,5 +9,7 @@ interface IF1InfoService {
 
     suspend fun fetchDriverStandings(): DriverStandingsResponse
 
-    suspend fun fetchTeamDetails(): ApiTeamDetails
+    suspend fun fetchTeamDetails(teamId: Int): ApiTeamDetails
+
+    suspend fun fetchTeamDetailsDrivers(teamId: Int): TeamDetailsDriversResponse
 }
