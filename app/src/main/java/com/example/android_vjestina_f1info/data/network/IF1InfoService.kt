@@ -9,7 +9,7 @@ interface IF1InfoService {
 
     suspend fun fetchDriverStandings(): DriverStandingsResponse
 
-    suspend fun fetchTeamDetails(teamId: Int): ApiTeamDetails
+    suspend fun fetchTeamDetails(teamId: Int): ApiTeamDetailsResponse
 
     suspend fun fetchTeamDetailsDrivers(teamId: Int): TeamDetailsDriversResponse
 }

@@ -15,4 +15,8 @@ val databaseModule = module {
             APP_DATABASE_NAME,
         ).build()
     }
+
+    single {
+        get<F1InfoAppDatabase>().favoriteTeamDao()
+    }
 }

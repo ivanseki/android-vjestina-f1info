@@ -14,12 +14,7 @@ import org.koin.dsl.module
 
 val networkModule = module {
     single<IF1InfoService> { F1InfoService(client = get()) }
-/*
-    install(DefaultHeaders) {
-        header("X-RapidAPI-Key", "7cc27589a7mshcb29eacccff6aeap186cd5jsn016ceaf74ef5")
-        header("X-RapidAPI-Host", "api-formula-1.p.rapidapi.com")
-    }
-*/
+
     single {
         HttpClient(Android) {
             expectSuccess = true

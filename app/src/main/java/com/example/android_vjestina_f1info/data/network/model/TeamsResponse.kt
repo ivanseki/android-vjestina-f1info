@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TeamsResponse(
-    @SerialName("teams")
+    @SerialName("response")
     val teams: List<ApiTeam>
 )

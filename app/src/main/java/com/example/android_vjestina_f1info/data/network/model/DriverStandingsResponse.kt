@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DriverStandingsResponse(
-    @SerialName("rankings")
+    @SerialName("response")
     val driver_standings: List<ApiDriverStanding>
 )

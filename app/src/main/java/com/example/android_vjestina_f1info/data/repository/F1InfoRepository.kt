@@ -4,6 +4,7 @@ import com.example.android_vjestina_f1info.data.database.DbFavoriteTeam
 import com.example.android_vjestina_f1info.data.database.IFavoriteTeamDao
 import com.example.android_vjestina_f1info.data.network.BASE_TEAM_LOGO_URL
 import com.example.android_vjestina_f1info.data.network.IF1InfoService
+import com.example.android_vjestina_f1info.data.network.model.TeamStandingsResponse
 import com.example.android_vjestina_f1info.model.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -34,6 +35,27 @@ class F1InfoRepository(
 
     override fun teams(): Flow<List<Team>> = teams
 
+
+    override fun teamStandings(): Flow<List<TeamStanding>> = flow {
+        emit(f1InfoService.fetchTeamStandings().team_standings)
+    }.flatMapLatest { apiTeamStandings ->
+        flowOf(
+            apiTeamStandings.map { apiTeamStanding ->
+                TeamStanding(
+                    id = apiTeamStanding.id,
+                    name = apiTeamStanding.name,
+                    logoUrl = apiTeamStanding.logoUrl,
+                    points = apiTeamStanding.points,
+                    position = apiTeamStanding.position
+                )
+            })
+    }.shareIn(
+        scope = CoroutineScope(bgDispatcher),
+        started = SharingStarted.WhileSubscribed(1000L),
+        replay = 1
+    )
+
+/*
     override fun teamStandings(): Flow<List<TeamStanding>> = flow {
         emit(f1InfoService.fetchTeamStandings().team_standings)
     }.map {
@@ -50,7 +72,7 @@ class F1InfoRepository(
         scope = CoroutineScope(bgDispatcher),
         started = SharingStarted.WhileSubscribed(1000L),
         replay = 1
-    )
+    )*/
 
     override fun driverStandings(): Flow<List<DriverStanding>> = flow {
         emit(f1InfoService.fetchDriverStandings().driver_standings)
@@ -72,16 +94,32 @@ class F1InfoRepository(
     )
 
     override fun teamDetails(teamId: Int): Flow<TeamDetails> = flow {
-        emit(f1InfoService.fetchTeamDetails(teamId))
-    }.flatMapLatest { apiTeamDetails ->
+        emit(
+            f1InfoService.fetchTeamDetails(teamId).team to f1InfoService.fetchTeamDetailsDrivers(
+                teamId
+            ).drivers
+        )
+    }.flatMapLatest { (apiTeamDetails, apiTeamDetailsDrivers) ->
         teamDao.getFavorites().map { favoriteTeams ->
             apiTeamDetails.toTeamDetails(
                 isFavorite = favoriteTeams.any { it.id == apiTeamDetails.id },
-                drivers = teamDetailsDrivers(teamId).toList().flatten()
+                drivers = apiTeamDetailsDrivers.map { apiDriver -> apiDriver.toDriver() }
             )
         }
     }.flowOn(bgDispatcher)
 
+    /*
+        override fun teamDetails(teamId: Int): Flow<TeamDetails> = flow {
+            emit(f1InfoService.fetchTeamDetails(teamId).team)
+        }.flatMapLatest { apiTeamDetails ->
+            teamDao.getFavorites().map { favoriteTeams ->
+                apiTeamDetails.toTeamDetails(
+                    isFavorite = favoriteTeams.any { it.id == apiTeamDetails.id },
+                    drivers = teamDetailsDrivers(teamId).toList().flatten()
+                )
+            }
+        }.flowOn(bgDispatcher)
+    */
     override fun teamDetailsDrivers(teamId: Int): Flow<List<Driver>> = flow {
         emit(f1InfoService.fetchTeamDetailsDrivers(teamId).drivers)
     }.map {
@@ -121,7 +159,7 @@ class F1InfoRepository(
             teamDao.insertFavorite(
                 favoriteTeam = DbFavoriteTeam(
                     id = teamId,
-                    logoUrl = BASE_TEAM_LOGO_URL + f1InfoService.fetchTeamDetails(teamId).logoUrl
+                    logoUrl = f1InfoService.fetchTeamDetails(teamId).team.logoUrl
                 )
             )
         }
