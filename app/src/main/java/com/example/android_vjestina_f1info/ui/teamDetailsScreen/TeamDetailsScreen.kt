@@ -146,111 +146,66 @@ fun TeamDetailsHeader(
 fun TeamDetailsOverview(
     modifier: Modifier = Modifier
         .fillMaxWidth(),
-    base: String,
-    first_team_entry: Int,
-    world_championships: Int,
-    pole_positions: Int,
-    fastest_laps: Int,
-    president: String,
-    director: String,
-    technical_manager: String,
-    chassis: String,
-    engine: String
+    base: String?,
+    first_team_entry: Int?,
+    world_championships: Int?,
+    pole_positions: Int?,
+    fastest_laps: Int?,
+    president: String?,
+    director: String?,
+    technical_manager: String?,
+    chassis: String?,
+    engine: String?
 ) {
     Column(
         modifier = modifier
             .padding(start = MaterialTheme.spacing.medium, end = MaterialTheme.spacing.medium)
     ) {
-        Text(
-            text = base,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(top = 5.dp, bottom = 5.dp)
-        )
 
-        Text(
-            text = "First appearance: $first_team_entry",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(top = 5.dp, bottom = 5.dp)
-        )
+        if (base != null)
+            TeamDetailsOverviewText(text = base)
 
-        Text(
-            text = "World champions won: $world_championships",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(top = 5.dp, bottom = 5.dp)
-        )
+        if (first_team_entry != null)
+            TeamDetailsOverviewText(text = "First appearance: $first_team_entry")
 
-        Text(
-            text = "Number of pole positions: $pole_positions",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(top = 5.dp, bottom = 5.dp)
-        )
+        if (world_championships != null)
+            TeamDetailsOverviewText(text = "World champions won: $world_championships")
 
-        Text(
-            text = "Number of fastest laps: $fastest_laps",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(top = 5.dp, bottom = 5.dp)
-        )
+        if (pole_positions != null)
+            TeamDetailsOverviewText(text = "Number of pole positions: $pole_positions")
 
-        Text(
-            text = "President: $president",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(top = 5.dp, bottom = 5.dp)
-        )
+        if (fastest_laps != null)
+            TeamDetailsOverviewText(text = "Number of fastest laps: $fastest_laps")
 
-        Text(
-            text = "Director: $director",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(top = 5.dp, bottom = 5.dp)
-        )
+        if (president != null)
+            TeamDetailsOverviewText(text = "President: $president")
 
-        Text(
-            text = "Technical manager: $technical_manager",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(top = 5.dp, bottom = 5.dp)
-        )
+        if (director != null)
+            TeamDetailsOverviewText(text = "Director: $director")
 
-        Text(
-            text = "Chassis: $chassis",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(top = 5.dp, bottom = 5.dp)
-        )
+        if (technical_manager != null)
+            TeamDetailsOverviewText(text = "Technical manager: $technical_manager")
 
-        Text(
-            text = "Engine: $engine",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.Black,
-            modifier = Modifier
-                .padding(top = 5.dp, bottom = 5.dp)
-        )
+        if (chassis != null)
+            TeamDetailsOverviewText(text = "Chassis: $chassis")
+
+        if (engine != null)
+            TeamDetailsOverviewText(text = "Engine: $engine")
     }
+}
+
+@Composable
+fun TeamDetailsOverviewText(
+    text: String
+) {
+    Text(
+        text = text,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.SemiBold,
+        color = Color.Black,
+        modifier = Modifier
+            .padding(top = 5.dp, bottom = 5.dp)
+    )
 }
 
 @Composable
@@ -263,36 +218,38 @@ fun TeamDetailsDrivers(
         modifier = modifier
             .padding(start = MaterialTheme.spacing.medium, end = MaterialTheme.spacing.medium)
     ) {
-        Text(
-            modifier = modifier
-                .fillMaxWidth(),
-            text = "Drivers",
-            maxLines = 1,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold
-        )
+        if (drivers.isNotEmpty()) {
+            Text(
+                modifier = modifier
+                    .fillMaxWidth(),
+                text = "Drivers",
+                maxLines = 1,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            )
 
-        Spacer(
-            modifier = Modifier
-                .height(MaterialTheme.spacing.small)
-        )
+            Spacer(
+                modifier = Modifier
+                    .height(MaterialTheme.spacing.small)
+            )
 
-        LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium),
-            userScrollEnabled = true
-        ) {
-            items(
-                items = drivers,
-                key = { driver -> driver.id }
-            ) { driver ->
-                TeamDetailsDriverCard(
-                    teamDetailsDriverCardViewState = driver,
-                    modifier = Modifier
-                        .size(
-                            width = 125.dp,
-                            height = 200.dp
-                        )
-                )
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium),
+                userScrollEnabled = true
+            ) {
+                items(
+                    items = drivers,
+                    key = { driver -> driver.id }
+                ) { driver ->
+                    TeamDetailsDriverCard(
+                        teamDetailsDriverCardViewState = driver,
+                        modifier = Modifier
+                            .size(
+                                width = 125.dp,
+                                height = 200.dp
+                            )
+                    )
+                }
             }
         }
     }

@@ -12,7 +12,7 @@ interface IF1InfoRepository {
 
     fun teamDetails(teamId: Int): Flow<TeamDetails>
 
-    fun teamDetailsDrivers(teamId: Int): Flow<List<Driver>>
+    //fun teamDetailsDrivers(teamId: Int): Flow<List<Driver>>
 
     fun favoriteTeams(): Flow<List<Team>>
 

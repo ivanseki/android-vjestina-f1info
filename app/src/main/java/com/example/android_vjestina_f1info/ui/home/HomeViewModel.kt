@@ -18,7 +18,7 @@ class HomeViewModel(
         teamsRepository
             .teams()
             .map { teams ->
-                homeMapper.toHomeViewState(teams)
+                homeMapper.toHomeViewState(teams.sortedByDescending { it.isFavorite })
             }
             .stateIn(
                 scope = viewModelScope,

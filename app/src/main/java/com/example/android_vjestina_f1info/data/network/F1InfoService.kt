@@ -29,6 +29,6 @@ class F1InfoService(private val client: HttpClient) : IF1InfoService {
     }
 
     override suspend fun fetchTeamDetailsDrivers(teamId: Int): TeamDetailsDriversResponse {
-        return client.get("$BASE_URL/drivers?season=${R.string.season}&team=$teamId").body()
+        return client.get("$BASE_URL/rankings/drivers?season=${R.string.season}&team=$teamId").body()
     }
 }

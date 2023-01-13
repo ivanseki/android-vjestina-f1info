@@ -1,5 +1,6 @@
 package com.example.android_vjestina_f1info.data.repository
 
+import android.util.Log
 import com.example.android_vjestina_f1info.data.database.DbFavoriteTeam
 import com.example.android_vjestina_f1info.data.database.IFavoriteTeamDao
 import com.example.android_vjestina_f1info.data.network.BASE_TEAM_LOGO_URL
@@ -34,17 +35,16 @@ class F1InfoRepository(
     )
 
     override fun teams(): Flow<List<Team>> = teams
-
-
+/*
     override fun teamStandings(): Flow<List<TeamStanding>> = flow {
         emit(f1InfoService.fetchTeamStandings().team_standings)
     }.flatMapLatest { apiTeamStandings ->
         flowOf(
             apiTeamStandings.map { apiTeamStanding ->
                 TeamStanding(
-                    id = apiTeamStanding.id,
-                    name = apiTeamStanding.name,
-                    logoUrl = apiTeamStanding.logoUrl,
+                    id = apiTeamStanding.team.id,
+                    name = apiTeamStanding.team.name,
+                    logoUrl = apiTeamStanding.team.logoUrl,
                     points = apiTeamStanding.points,
                     position = apiTeamStanding.position
                 )
@@ -54,25 +54,27 @@ class F1InfoRepository(
         started = SharingStarted.WhileSubscribed(1000L),
         replay = 1
     )
+*/
 
-/*
     override fun teamStandings(): Flow<List<TeamStanding>> = flow {
         emit(f1InfoService.fetchTeamStandings().team_standings)
     }.map {
         it.map { apiTeamStanding ->
             TeamStanding(
-                id = apiTeamStanding.id,
-                name = apiTeamStanding.name,
-                logoUrl = apiTeamStanding.logoUrl,
+                id = apiTeamStanding.team.id,
+                name = apiTeamStanding.team.name,
+                logoUrl = apiTeamStanding.team.logoUrl,
                 points = apiTeamStanding.points,
                 position = apiTeamStanding.position
             )
-        }
+        }.onEach { Log.d("asdf", "asdf")}
     }.shareIn(
         scope = CoroutineScope(bgDispatcher),
         started = SharingStarted.WhileSubscribed(1000L),
         replay = 1
-    )*/
+    )
+
+    // logiranje
 
     override fun driverStandings(): Flow<List<DriverStanding>> = flow {
         emit(f1InfoService.fetchDriverStandings().driver_standings)
@@ -95,31 +97,23 @@ class F1InfoRepository(
 
     override fun teamDetails(teamId: Int): Flow<TeamDetails> = flow {
         emit(
-            f1InfoService.fetchTeamDetails(teamId).team to f1InfoService.fetchTeamDetailsDrivers(
+            f1InfoService.fetchTeamDetails(teamId).team[0] to f1InfoService.fetchTeamDetailsDrivers(
                 teamId
-            ).drivers
+            )
         )
     }.flatMapLatest { (apiTeamDetails, apiTeamDetailsDrivers) ->
         teamDao.getFavorites().map { favoriteTeams ->
             apiTeamDetails.toTeamDetails(
                 isFavorite = favoriteTeams.any { it.id == apiTeamDetails.id },
-                drivers = apiTeamDetailsDrivers.map { apiDriver -> apiDriver.toDriver() }
+                drivers = apiTeamDetailsDrivers.drivers.map { apiDriverDetails ->
+                    apiDriverDetails.driver.toDriver()
+                }
+                //driver.map { apiDriver -> apiDriver.toDriver() }
             )
         }
     }.flowOn(bgDispatcher)
 
-    /*
-        override fun teamDetails(teamId: Int): Flow<TeamDetails> = flow {
-            emit(f1InfoService.fetchTeamDetails(teamId).team)
-        }.flatMapLatest { apiTeamDetails ->
-            teamDao.getFavorites().map { favoriteTeams ->
-                apiTeamDetails.toTeamDetails(
-                    isFavorite = favoriteTeams.any { it.id == apiTeamDetails.id },
-                    drivers = teamDetailsDrivers(teamId).toList().flatten()
-                )
-            }
-        }.flowOn(bgDispatcher)
-    */
+/*
     override fun teamDetailsDrivers(teamId: Int): Flow<List<Driver>> = flow {
         emit(f1InfoService.fetchTeamDetailsDrivers(teamId).drivers)
     }.map {
@@ -135,7 +129,7 @@ class F1InfoRepository(
         scope = CoroutineScope(bgDispatcher),
         started = SharingStarted.WhileSubscribed(1000L),
         replay = 1
-    )
+    )*/
 
     private val favorites = teamDao.getFavorites().map {
         it.map { dbFavoriteTeam ->
@@ -159,7 +153,7 @@ class F1InfoRepository(
             teamDao.insertFavorite(
                 favoriteTeam = DbFavoriteTeam(
                     id = teamId,
-                    logoUrl = f1InfoService.fetchTeamDetails(teamId).team.logoUrl
+                    logoUrl = f1InfoService.fetchTeamDetails(teamId).team[0].logoUrl
                 )
             )
         }
@@ -171,10 +165,9 @@ class F1InfoRepository(
         }
     }
 
-
     private suspend fun findTeam(teamId: Int): Team? {
         var team: Team? = null
-        teams.toList().flatten().forEach {
+        teams.first().forEach {
             if (it.id == teamId)
                 team = it
         }

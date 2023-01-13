@@ -5,5 +5,5 @@ import kotlinx.serialization.SerialName
 @kotlinx.serialization.Serializable
 data class TeamDetailsDriversResponse(
     @SerialName("response")
-    val drivers: List<ApiDriver>
+    val drivers: List<ApiDriverDetails>
 )

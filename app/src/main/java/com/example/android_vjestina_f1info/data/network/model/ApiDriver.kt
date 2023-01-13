@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ApiDriver(
-
     @SerialName("id")
     val id: Int,
 

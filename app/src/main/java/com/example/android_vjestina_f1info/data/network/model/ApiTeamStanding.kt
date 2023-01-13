@@ -6,14 +6,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ApiTeamStanding(
-    @SerialName("id")
-    val id: Int,
-
-    @SerialName("name")
-    val name: String,
-
-    @SerialName("logo")
-    val logoUrl: String?,
+    @SerialName("team")
+    val team: ApiTeamStandingTeam,
 
     @SerialName("position")
     val position: Int,
@@ -22,9 +16,9 @@ data class ApiTeamStanding(
     val points: Int
 ) {
     fun toTeamStanding() = TeamStanding(
-        id = id,
-        name = name,
-        logoUrl = logoUrl,
+        id = team.id,
+        name = team.name,
+        logoUrl = team.logoUrl,
         position = position,
         points = points
     )

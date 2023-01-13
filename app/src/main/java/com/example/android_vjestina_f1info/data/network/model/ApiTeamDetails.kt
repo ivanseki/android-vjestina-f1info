@@ -18,34 +18,34 @@ data class ApiTeamDetails(
     val logoUrl: String?,
 
     @SerialName("base")
-    val base: String,
+    val base: String?,
 
     @SerialName("first_team_entry")
-    val first_team_entry: Int,
+    val first_team_entry: Int?,
 
     @SerialName("world_championships")
-    val world_championships: Int,
+    val world_championships: Int?,
 
     @SerialName("pole_positions")
-    val pole_positions: Int,
+    val pole_positions: Int?,
 
     @SerialName("fastest_laps")
-    val fastest_laps: Int,
+    val fastest_laps: Int?,
 
     @SerialName("president")
-    val president: String,
+    val president: String?,
 
     @SerialName("director")
-    val director: String,
+    val director: String?,
 
     @SerialName("technical_manager")
-    val technical_manager: String,
+    val technical_manager: String?,
 
     @SerialName("chassis")
-    val chassis: String,
+    val chassis: String?,
 
     @SerialName("engine")
-    val engine: String
+    val engine: String?
 ) {
     fun toTeamDetails(isFavorite: Boolean, drivers: List<Driver>) = TeamDetails(
         team = Team(
