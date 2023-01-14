@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TeamStandingsResponse(
+data class ApiTeamDetailsDriversResponse(
     @SerialName("response")
-    val team_standings: List<ApiTeamStanding>
+    val drivers: List<ApiDriverDetails>
 )

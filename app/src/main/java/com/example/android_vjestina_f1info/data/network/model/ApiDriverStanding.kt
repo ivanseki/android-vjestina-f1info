@@ -6,29 +6,20 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ApiDriverStanding(
-    @SerialName("id")
-    val id: Int,
-
-    @SerialName("name")
-    val name: String,
-
-    @SerialName("number")
-    val number: Int,
-
-    @SerialName("logo")
-    val imageUrl: String?,
-
     @SerialName("position")
     val position: Int,
 
+    @SerialName("driver")
+    val driver: ApiDriverStandingDriver,
+
     @SerialName("points")
-    val points: Int
+    val points: Int?
 ) {
     fun toDriverStanding() = DriverStanding(
-        id = id,
-        name = name,
-        number = number,
-        imageUrl = imageUrl,
+        id = driver.id,
+        name = driver.name,
+        number = driver.number,
+        imageUrl = driver.imageUrl,
         position = position,
         points = points
     )

@@ -25,9 +25,9 @@ import com.example.android_vjestina_f1info.mock.F1InfoMock
 data class DriverCardViewState(
     val id: Int,
     val name: String,
-    val number: Int,
+    val number: Int?,
     val imageUrl: String?,
-    val points: Int,
+    val points: Int?,
     val position: Int
 )
 
@@ -65,7 +65,7 @@ fun DriverCard(
             )
 
             Text(
-                text = driverCardViewState.number.toString(),
+                text = if (driverCardViewState.number == null) "" else driverCardViewState.number.toString(),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
@@ -86,7 +86,7 @@ fun DriverCard(
             )
 
             Text(
-                text = driverCardViewState.points.toString(),
+                text = if (driverCardViewState.points == null) "0" else driverCardViewState.points.toString(),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,

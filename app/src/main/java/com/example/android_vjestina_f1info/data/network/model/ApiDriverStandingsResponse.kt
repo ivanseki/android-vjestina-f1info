@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class DriverStandingsResponse(
+data class ApiDriverStandingsResponse(
     @SerialName("response")
     val driver_standings: List<ApiDriverStanding>
 )

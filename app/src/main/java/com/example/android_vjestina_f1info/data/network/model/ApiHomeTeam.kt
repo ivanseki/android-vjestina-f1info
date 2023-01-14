@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ApiTeam(
+data class ApiHomeTeam(
     @SerialName("id")
     val id: Int,
 
